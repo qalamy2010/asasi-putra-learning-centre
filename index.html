@@ -11,6 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>SkorAsasi1 | Asasi Putra Semester 1 Learning Centre</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="chapter-progress.css" />
 </head>
 <body>
   <div class="topbar">
@@ -27,44 +28,6 @@
   </div>
 
   <main class="app-shell">
-    <section class="hero">
-      <div class="hero-panel">
-        <p class="eyebrow">Mathematics Chapter 1</p>
-        <h1>Master Real Number System, one skill at a time.</h1>
-        <p class="hero-copy">
-          SkorAsasi1 starts with Mathematics Chapter 1: Real Number System. Revise with compact notes, flashcards, quiz practice,
-          mixed mastery challenges and instant explanations.
-        </p>
-        <div class="hero-actions">
-          <button class="btn" data-jump="quiz">Start Quiz</button>
-          <button class="btn secondary" data-jump="revision">Revise First</button>
-          <button class="btn secondary" data-jump="challenge">Mixed Challenge</button>
-        </div>
-      </div>
-
-      <aside class="study-card">
-        <h2>Recommended 15-minute loop</h2>
-        <div class="loop">
-          <div class="loop-step">
-            <b>1</b>
-            <div><strong>Revise</strong><span>Read one concept card only.</span></div>
-          </div>
-          <div class="loop-step">
-            <b>2</b>
-            <div><strong>Recall</strong><span>Flip 3 flashcards without looking at notes.</span></div>
-          </div>
-          <div class="loop-step">
-            <b>3</b>
-            <div><strong>Practice</strong><span>Answer 5 questions and read the explanation.</span></div>
-          </div>
-          <div class="loop-step">
-            <b>4</b>
-            <div><strong>Mix</strong><span>Do a challenge so the brain learns to choose methods.</span></div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
     <nav class="nav-tabs" aria-label="App sections">
       <button class="nav-tab active" data-view="dashboard" data-short="Home">Dashboard</button>
       <button class="nav-tab" data-view="revision" data-short="Revise">Revision</button>
@@ -78,24 +41,26 @@
       <div class="section-head">
         <div>
           <h2>Mastery Dashboard</h2>
-          <p>Track each skill. A topic becomes stronger when you answer its questions correctly across practice sessions.</p>
+          <p>Track Semester 1 Mathematics chapter by chapter. Progress is saved on this device after every answer.</p>
         </div>
         <div class="section-actions">
           <button class="btn ghost" data-jump="formula">Rules</button>
           <button class="btn ghost" id="resetProgress">Reset Progress</button>
         </div>
       </div>
+      <div class="chapter-switcher" id="chapterShelf"></div>
       <div class="coach-grid">
         <article class="focus-card" id="focusCard"></article>
         <article class="path-card">
           <div class="path-kicker">Guided path</div>
-          <h3>Finish the chapter like a course, not a PDF.</h3>
-          <p>Move topic by topic, then prove understanding through mixed practice.</p>
+          <h3 id="pathTitle">Finish the chapter like a course, not a PDF.</h3>
+          <p id="pathCopy">Move topic by topic, then prove understanding through mixed practice.</p>
           <div class="learning-path" id="learningPath"></div>
         </article>
       </div>
       <div class="mission-grid" id="missionGrid"></div>
       <div class="review-strip" id="reviewStrip"></div>
+      <div class="progress-board" id="progressBoard"></div>
       <div class="stat-strip" id="stats"></div>
       <div class="grid mastery-grid" id="masteryGrid"></div>
     </section>
@@ -104,7 +69,7 @@
       <div class="section-head">
         <div>
           <h2>Revision Cards</h2>
-          <p>Short notes extracted and reorganized from Chapter 1. Pick one topic, understand the rule, then practise.</p>
+          <p id="revisionIntro">Short notes extracted and reorganized from the active chapter. Pick one topic, understand the rule, then practise.</p>
         </div>
       </div>
       <div class="two-col">
@@ -147,7 +112,7 @@
       <div class="section-head">
         <div>
           <h2>Topic Quiz</h2>
-          <p>Choose one topic for focused practice. Each session uses 5 questions with instant explanation.</p>
+          <p id="quizIntro">Choose one topic for focused practice. Each session uses 5 questions with instant explanation.</p>
         </div>
       </div>
       <div class="two-col">
@@ -167,12 +132,12 @@
       <div class="section-head">
         <div>
           <h2>Mixed Mastery Challenge</h2>
-          <p>Mixed questions force you to identify the right concept, not just repeat the last formula you saw.</p>
+          <p id="challengeIntro">Mixed questions force you to identify the right concept, not just repeat the last formula you saw.</p>
         </div>
         <button class="btn" id="startChallenge">Start 12 Questions</button>
       </div>
       <article class="quiz-panel" id="challengePanel">
-        <div class="empty-state">Start the challenge when you are ready. It will mix all Chapter 1 skills.</div>
+        <div class="empty-state">Start the challenge when you are ready.</div>
       </article>
     </section>
 
