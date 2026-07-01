@@ -1,0 +1,34 @@
+{
+  "id": "math-ch2-complex-numbers",
+  "subject": "Mathematics",
+  "chapterNumber": 2,
+  "title": "Complex Numbers",
+  "source": "Ch 2 Complex Number.pdf",
+  "topics": [
+    {
+      "id": "imaginary-unit",
+      "title": "Imaginary Unit and Complex Form",
+      "keyIdeas": ["i² = -1", "z = a + bi", "Re(z) = a", "Im(z) = b"]
+    },
+    {
+      "id": "equality-operations",
+      "title": "Equality and Algebraic Operations",
+      "keyIdeas": ["Compare real and imaginary parts separately", "Expand products normally", "Use i² = -1", "Powers of i repeat every 4"]
+    },
+    {
+      "id": "conjugate-quotient",
+      "title": "Conjugates and Quotients",
+      "keyIdeas": ["The conjugate of a + bi is a - bi", "z + z-bar = 2a", "z z-bar = a² + b²", "Use conjugates to rationalise denominators"]
+    },
+    {
+      "id": "argand-modulus-argument",
+      "title": "Argand Diagram, Modulus and Argument",
+      "keyIdeas": ["z = a + bi maps to point (a,b)", "|z| = √(a² + b²)", "arg(z) depends on quadrant", "Principal argument uses -π < θ < π"]
+    },
+    {
+      "id": "polar-form",
+      "title": "Polar Form",
+      "keyIdeas": ["z = r(cos θ + i sin θ)", "a = r cos θ", "b = r sin θ", "Convert between rectangular and polar form"]
+    }
+  ]
+}
