@@ -1,0 +1,32 @@
+{
+  "semester": 1,
+  "subject": "Mathematics",
+  "subjectCode": "MATHEMATICS_SEM1",
+  "chapters": [
+    {
+      "id": "math-chapter-1-real-number-system",
+      "chapterNumber": 1,
+      "title": "Real Number System",
+      "status": "active",
+      "source": "Chapter 1 - Real Number System.pdf",
+      "features": [
+        "revision-notes",
+        "flashcards",
+        "topic-quiz",
+        "mixed-challenge",
+        "formula-sheet",
+        "mastery-dashboard"
+      ],
+      "topics": [
+        "Sets",
+        "Real Numbers",
+        "Number Line and Intervals",
+        "Linear Inequalities",
+        "Indices",
+        "Surds",
+        "Logarithms"
+      ]
+    }
+  ],
+  "nextChapters": []
+}
