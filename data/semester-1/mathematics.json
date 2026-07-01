@@ -26,6 +26,29 @@
         "Surds",
         "Logarithms"
       ]
+    },
+    {
+      "id": "math-ch2-complex-numbers",
+      "chapterNumber": 2,
+      "title": "Complex Numbers",
+      "status": "active",
+      "source": "Ch 2 Complex Number.pdf",
+      "features": [
+        "revision-notes",
+        "flashcards",
+        "topic-quiz",
+        "mixed-challenge",
+        "formula-sheet",
+        "chapter-progress",
+        "semester-progress"
+      ],
+      "topics": [
+        "Imaginary Unit and Complex Form",
+        "Equality and Algebraic Operations",
+        "Conjugates and Quotients",
+        "Argand Diagram, Modulus and Argument",
+        "Polar Form"
+      ]
     }
   ],
   "nextChapters": []
