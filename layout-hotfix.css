@@ -1,0 +1,8 @@
+/* v5.1 overflow and laptop layout hotfix */
+.app,.view,.grid,.subject,.chapter,.chapter span,.topic,.lesson,.quizbox,.panel{min-width:0}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));align-items:start;overflow:visible}
+.subject{overflow:hidden;min-height:0}.chapterList{margin-top:8px}
+.chapter{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;width:100%;min-width:0;overflow:hidden;gap:10px}
+.chapter span{display:block;min-width:0;overflow:hidden}.chapter b{display:block}.chapter small{display:block!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere;word-break:normal;line-height:1.25}.chapter strong{white-space:nowrap;min-width:34px;text-align:right;flex:0 0 auto}.subject h3,.subject p{overflow-wrap:anywhere}.mark{font-size:.78rem;line-height:1;text-align:center;overflow:hidden}.practiceGrid,.challengeGrid,.layout{grid-template-columns:minmax(280px,330px) minmax(0,1fr)}.quizbox,.lesson{overflow:hidden}.choice b,.question,.rule{overflow-wrap:anywhere}
+@media(max-width:1040px){.practiceGrid,.challengeGrid,.layout{grid-template-columns:1fr}.topicRail{position:static;display:flex;overflow-x:auto}.topic{min-width:220px}.toolbar{position:static}}
+@media(max-width:680px){.grid{grid-template-columns:1fr}.chapter{grid-template-columns:minmax(0,1fr) auto}.chapter small{font-size:.78rem}.practiceGrid,.challengeGrid,.layout{grid-template-columns:1fr}.topic{min-width:78vw}}
