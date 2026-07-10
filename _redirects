@@ -1,3 +1,0 @@
-# Cloudflare Pages SPA fallback
-# Serve index.html for app routes while preserving real static files.
-/* /index.html 200
