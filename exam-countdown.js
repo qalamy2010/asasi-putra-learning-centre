@@ -4,6 +4,7 @@
 var EXAM_DATE=new Date(2026,10,9,0,0,0); // 09/11/2026, Malaysia format: 9 Nov 2026
 var STORY_W=1080;
 var STORY_H=1920;
+var APP_LINK='https://skorasasi1.pages.dev';
 var timer=null;
 
 function $(s,root){return(root||document).querySelector(s)}
@@ -136,18 +137,22 @@ function downloadBlob(blob){
 function toast(text){
   var old=document.querySelector('.shareToast');if(old)old.remove();var el=document.createElement('div');el.className='shareToast';el.textContent=text;document.body.appendChild(el);setTimeout(function(){el.remove()},3000);
 }
+function shareText(){
+  var t=left();
+  return 'Exam countdown SkorAsasi1: '+t.days+' hari '+pad(t.hours)+' jam '+pad(t.minutes)+' minit lagi menuju 9 November 2026.\n\nJom skor Asasi: '+APP_LINK;
+}
 async function shareCountdown(){
   var canvas=makeCountdownCanvas();var blob=await canvasToBlob(canvas);var file=new File([blob],'skorasasi1-exam-countdown.png',{type:'image/png'});
-  var text='Exam countdown SkorAsasi1: '+left().days+' hari lagi menuju 9 November 2026. Jom revise konsisten.';
+  var text=shareText();
   try{
     if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
-      await navigator.share({title:'SkorAsasi1 Exam Countdown',text:text,files:[file]});
+      await navigator.share({title:'SkorAsasi1 Exam Countdown',text:text,url:APP_LINK,files:[file]});
       return;
     }
-    if(navigator.share){await navigator.share({title:'SkorAsasi1 Exam Countdown',text:text,url:location.href});downloadBlob(blob);return;}
+    if(navigator.share){await navigator.share({title:'SkorAsasi1 Exam Countdown',text:text,url:APP_LINK});downloadBlob(blob);return;}
   }catch(e){if(e&&e.name==='AbortError')return;}
   downloadBlob(blob);
-  window.open('https://wa.me/?text='+encodeURIComponent(text+' '+location.href),'_blank','noopener');
+  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener');
   toast('Image downloaded. Upload ke WhatsApp Status.');
 }
 function previewCountdown(){
