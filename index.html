@@ -5,23 +5,72 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f6f8fb" />
   <meta name="description" content="SkorAsasi1 — pusat pembelajaran Semester 1 untuk pelajar Asasi Putra UPM." />
-  <title>Dashboard | SkorAsasi1</title>
+  <title>SkorAsasi1 | Semester 1 Learning Centre</title>
   <link rel="stylesheet" href="style-v5.css?v=v5.0" />
   <link rel="stylesheet" href="layout-hotfix.css?v=v5.1" />
   <link rel="stylesheet" href="progress-tools.css?v=v5.2" />
   <link rel="stylesheet" href="exam-countdown.css?v=v5.7" />
   <link rel="stylesheet" href="ui-v6.css?v=v6.0" />
+  <link rel="stylesheet" href="auth-v7.css?v=v7.0" />
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="auth-v7.js?v=v7.0"></script>
 </head>
-<body class="student-mode">
-  <div class="app-shell">
+<body class="auth-required">
+  <section class="auth-gate" id="authGate" aria-label="SkorAsasi1 account access">
+    <div class="auth-brand-panel">
+      <div class="auth-brand-top">
+        <span class="auth-logo">S1</span>
+        <div><strong>SkorAsasi1</strong><small>Asasi Putra · Semester 1</small></div>
+      </div>
+      <div class="auth-copy">
+        <span class="auth-kicker"><i data-lucide="graduation-cap"></i> LEARNING CENTRE</span>
+        <h1>Belajar dengan arah. Pantau progress sebenar.</h1>
+        <p>Satu ruang untuk belajar ikut subjek, buat latihan, uji mastery dan simpan progress anda merentas peranti.</p>
+        <div class="auth-benefits">
+          <div class="auth-benefit"><i data-lucide="book-open-check"></i><strong>Belajar berperingkat</strong><span>Subjek → chapter → topic.</span></div>
+          <div class="auth-benefit"><i data-lucide="badge-check"></i><strong>Practice & challenge</strong><span>Retrieval practice dengan feedback.</span></div>
+          <div class="auth-benefit"><i data-lucide="chart-no-axes-column-increasing"></i><strong>Progress tersimpan</strong><span>Akaun anda sync ke database.</span></div>
+        </div>
+      </div>
+      <div class="auth-foot">SkorAsasi1 · by Perintis Siswa</div>
+    </div>
+
+    <div class="auth-form-panel">
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="active" type="button" data-auth-mode="login">Log masuk</button>
+          <button type="button" data-auth-mode="register">Daftar akaun</button>
+        </div>
+
+        <form class="auth-form" id="loginForm">
+          <div><h2>Selamat kembali.</h2><p>Masuk menggunakan email atau nombor telefon berdaftar.</p></div>
+          <div class="field"><label for="loginIdentifier">Email / nombor telefon</label><input id="loginIdentifier" name="identifier" autocomplete="username" inputmode="email" placeholder="contoh@email.com / 0123456789" required /></div>
+          <div class="field"><label for="loginPassword">Password</label><div class="password-wrap"><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Masukkan password" required /><button class="password-toggle" type="button" data-password-target="loginPassword" aria-label="Lihat password"><i data-lucide="eye"></i></button></div></div>
+          <div class="auth-message" id="authMessage"></div>
+          <button class="auth-submit" type="submit">Log masuk <i data-lucide="arrow-right"></i></button>
+          <div class="auth-note"><i data-lucide="shield-check"></i><span>Student dan Admin menggunakan login yang sama. Akses ditentukan secara selamat oleh role dalam backend.</span></div>
+        </form>
+
+        <form class="auth-form hidden" id="registerForm">
+          <div><h2>Cipta akaun.</h2><p>Progress pembelajaran akan disimpan terus pada akaun ini.</p></div>
+          <div class="field"><label for="registerName">Nama penuh</label><input id="registerName" name="fullName" autocomplete="name" placeholder="Nama penuh" required minlength="2" maxlength="80" /></div>
+          <div class="field"><label for="registerPhone">Nombor telefon</label><input id="registerPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="0123456789" required /></div>
+          <div class="field"><label for="registerEmail">Email</label><input id="registerEmail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="nama@email.com" required /></div>
+          <div class="field"><label for="registerPassword">Password</label><div class="password-wrap"><input id="registerPassword" name="password" type="password" autocomplete="new-password" placeholder="Minimum 8 aksara" required minlength="8" /><button class="password-toggle" type="button" data-password-target="registerPassword" aria-label="Lihat password"><i data-lucide="eye"></i></button></div></div>
+          <div class="auth-message"></div>
+          <button class="auth-submit" type="submit">Daftar & mula belajar <i data-lucide="arrow-right"></i></button>
+          <div class="auth-note"><i data-lucide="lock-keyhole"></i><span>Password disimpan sebagai secure password hash. Password asal tidak disimpan dalam database.</span></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell hidden" id="appShell">
     <aside class="sidebar" id="sidebar" aria-label="Navigasi utama">
       <div class="brand-wrap">
         <button class="brand-shell" type="button" data-view="home" data-shell-nav aria-label="SkorAsasi1 dashboard">
           <span class="brand-mark" aria-hidden="true">S1</span>
-          <span class="brand-copy">
-            <strong>SkorAsasi1</strong>
-            <small>Asasi Putra · Semester 1</small>
-          </span>
+          <span class="brand-copy"><strong>SkorAsasi1</strong><small>Asasi Putra · Semester 1</small></span>
         </button>
         <button class="icon-btn mobile-only" id="closeSidebar" type="button" aria-label="Tutup menu"><i data-lucide="x"></i></button>
       </div>
@@ -41,18 +90,18 @@
         <span class="nav-label">PENGURUSAN</span>
         <button class="nav-item active" type="button" data-view="admin-dashboard" data-shell-nav><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
         <button class="nav-item" type="button" data-view="admin-students" data-shell-nav><i data-lucide="users-round"></i><span>Pelajar</span></button>
-        <button class="nav-item" type="button" data-view="admin-content" data-shell-nav><i data-lucide="layers-3"></i><span>Kandungan</span><span class="nav-badge">12</span></button>
+        <button class="nav-item" type="button" data-view="admin-content" data-shell-nav><i data-lucide="layers-3"></i><span>Kandungan</span></button>
         <span class="nav-label">ANALITIK</span>
         <button class="nav-item" type="button" data-view="admin-insights" data-shell-nav><i data-lucide="chart-spline"></i><span>Insights</span></button>
       </nav>
 
       <div class="sidebar-footer">
-        <div class="role-card-mini">
-          <div class="role-icon"><i data-lucide="graduation-cap"></i></div>
-          <div><strong id="roleLabel">Student</strong><small id="roleSub">Learning workspace</small></div>
-          <span class="status-dot" aria-hidden="true"></span>
+        <div class="account-footer-card">
+          <span class="avatar" data-user-avatar>S1</span>
+          <div><strong data-user-name>Pengguna</strong><small data-user-email></small></div>
+          <button class="logout-btn" id="logoutBtn" type="button" aria-label="Log keluar"><i data-lucide="log-out"></i></button>
         </div>
-        <button class="nav-item role-trigger" id="roleTrigger" type="button"><i data-lucide="repeat-2"></i><span>Tukar paparan</span></button>
+        <div class="sync-line"><span data-user-role>Student</span> · <span id="syncStatus">Secure session</span></div>
       </div>
     </aside>
 
@@ -62,18 +111,13 @@
       <header class="topbar">
         <div class="topbar-left">
           <button class="icon-btn mobile-only" id="openSidebar" type="button" aria-label="Buka menu"><i data-lucide="menu"></i></button>
-          <div class="page-heading">
-            <span class="eyebrow" id="pageEyebrow">PEMBELAJARAN</span>
-            <h1 id="pageTitle">Dashboard</h1>
-          </div>
+          <div class="page-heading"><span class="eyebrow" id="pageEyebrow">PEMBELAJARAN</span><h1 id="pageTitle">Dashboard</h1></div>
         </div>
         <div class="topbar-actions">
           <div id="topStats" class="topstats" aria-label="Progress ringkas"></div>
-          <button class="icon-btn desktop-only" type="button" aria-label="Notifikasi"><i data-lucide="bell"></i></button>
-          <button class="profile-btn" id="profileRoleTrigger" type="button" aria-label="Tukar paparan role">
-            <span class="avatar">S1</span>
-            <span class="profile-copy desktop-only"><strong>SkorAsasi1</strong><small id="profileRole">Student</small></span>
-            <i class="desktop-only" data-lucide="chevron-down"></i>
+          <button class="profile-btn" type="button" aria-label="Profil pengguna">
+            <span class="avatar" data-user-avatar>S1</span>
+            <span class="profile-copy desktop-only"><strong data-user-name>Pengguna</strong><small data-user-role>Student</small></span>
           </button>
         </div>
       </header>
@@ -88,169 +132,52 @@
 
         <section id="admin-dashboard" class="view">
           <div class="admin-hero">
-            <div>
-              <span class="section-kicker">CONTROL CENTRE</span>
-              <h2>Ringkasan SkorAsasi1</h2>
-              <p>Pantau struktur pembelajaran Semester 1 dan kesiapsiagaan platform daripada satu ruang yang kemas.</p>
-            </div>
-            <div class="admin-actions">
-              <button class="btn ghost" type="button" data-view="admin-content"><i data-lucide="layers-3"></i> Semak kandungan</button>
-              <button class="btn" type="button" data-view="admin-students"><i data-lucide="users-round"></i> Pelajar</button>
-            </div>
+            <div><span class="section-kicker">LIVE CONTROL CENTRE</span><h2>Progress pelajar, secara sebenar.</h2><p>Pantau penggunaan, mastery dan accuracy daripada akaun student yang berdaftar.</p></div>
+            <div class="admin-actions"><button class="btn ghost" id="refreshAdmin" type="button"><i data-lucide="refresh-cw"></i> Refresh data</button><button class="btn" type="button" data-view="admin-students"><i data-lucide="users-round"></i> Lihat pelajar</button></div>
           </div>
-
-          <div class="admin-metric-grid">
-            <article class="admin-metric">
-              <div class="admin-metric-top"><div class="admin-metric-icon"><i data-lucide="book-open-check"></i></div><span class="mini-chip good">Live</span></div>
-              <strong>4</strong><small>Subjek aktif</small><div class="metric-note good">+ Physics akan datang</div>
-            </article>
-            <article class="admin-metric">
-              <div class="admin-metric-top"><div class="admin-metric-icon"><i data-lucide="layers-3"></i></div><span class="mini-chip">Semester 1</span></div>
-              <strong>12</strong><small>Chapter live</small><div class="metric-note">Merentas 4 subjek</div>
-            </article>
-            <article class="admin-metric">
-              <div class="admin-metric-top"><div class="admin-metric-icon"><i data-lucide="database"></i></div><span class="mini-chip">Local</span></div>
-              <strong>Device</strong><small>Progress storage</small><div class="metric-note">Belum sync akaun</div>
-            </article>
-            <article class="admin-metric">
-              <div class="admin-metric-top"><div class="admin-metric-icon"><i data-lucide="shield-check"></i></div><span class="mini-chip good">Simple</span></div>
-              <strong>2</strong><small>Role sahaja</small><div class="metric-note good">Admin + Student</div>
-            </article>
+          <div class="admin-live-grid">
+            <article class="admin-live-card"><span><i data-lucide="users"></i> Jumlah pelajar</span><strong id="metricTotalStudents">0</strong><small>Akaun student berdaftar</small></article>
+            <article class="admin-live-card"><span><i data-lucide="activity"></i> Aktif 7 hari</span><strong id="metricActiveStudents">0</strong><small>Ada aktiviti pembelajaran</small></article>
+            <article class="admin-live-card"><span><i data-lucide="circle-gauge"></i> Purata mastery</span><strong id="metricMastery">0%</strong><small>Keseluruhan Semester 1</small></article>
+            <article class="admin-live-card"><span><i data-lucide="badge-check"></i> Purata accuracy</span><strong id="metricAccuracy">0%</strong><small>Pelajar yang sudah menjawab</small></article>
           </div>
-
           <div class="admin-grid">
-            <article class="admin-panel">
-              <div class="admin-panel-head"><div><span class="section-kicker">CONTENT HEALTH</span><h3>Coverage Semester 1</h3></div><span class="mini-chip good">12 chapter live</span></div>
-              <div class="content-health">
-                <div class="health-row"><span>Mathematics</span><div class="health-track"><i style="width:100%"></i></div><strong>4/4</strong></div>
-                <div class="health-row"><span>Chemistry I</span><div class="health-track"><i style="width:100%"></i></div><strong>4/4</strong></div>
-                <div class="health-row"><span>Biology I</span><div class="health-track"><i style="width:100%"></i></div><strong>2/2</strong></div>
-                <div class="health-row"><span>Agriculture</span><div class="health-track"><i style="width:100%"></i></div><strong>2/2</strong></div>
-                <div class="health-row"><span>Physics</span><div class="health-track"><i style="width:8%"></i></div><strong>Soon</strong></div>
-              </div>
-            </article>
-
-            <aside class="admin-panel">
-              <div class="admin-panel-head"><div><span class="section-kicker">SYSTEM</span><h3>Status platform</h3></div></div>
-              <div class="admin-list">
-                <div class="admin-row"><span class="admin-row-icon"><i data-lucide="circle-check-big"></i></span><div><strong>Learning engine</strong><small>Learn, practice & challenge aktif</small></div><span class="row-action">Ready</span></div>
-                <div class="admin-row"><span class="admin-row-icon"><i data-lucide="chart-no-axes-column-increasing"></i></span><div><strong>Progress tracker</strong><small>Disimpan pada browser pelajar</small></div><span class="row-action">Local</span></div>
-                <div class="admin-row"><span class="admin-row-icon"><i data-lucide="cloud"></i></span><div><strong>Account sync</strong><small>Database belum disambungkan</small></div><span class="row-action">Next</span></div>
-              </div>
-            </aside>
+            <article class="admin-panel"><div class="admin-panel-head"><div><span class="section-kicker">TOP PROGRESS</span><h3>Pelajar teratas</h3></div></div><div class="rank-list" id="topStudents"><p class="muted">Memuatkan...</p></div></article>
+            <article class="admin-panel"><div class="admin-panel-head"><div><span class="section-kicker">PERLU PERHATIAN</span><h3>Belum mula / mastery rendah</h3></div></div><div class="rank-list" id="attentionStudents"><p class="muted">Memuatkan...</p></div></article>
           </div>
         </section>
 
         <section id="admin-students" class="view">
-          <div class="admin-hero">
-            <div><span class="section-kicker">ADMIN · PELAJAR</span><h2>Pengurusan pelajar</h2><p>Struktur role telah dipermudahkan kepada Admin dan Student sahaja. Data akaun sebenar boleh disambungkan kemudian tanpa mengganggu learning engine.</p></div>
-          </div>
-          <div class="permission-grid">
-            <article class="permission-card">
-              <div class="permission-icon"><i data-lucide="shield-check"></i></div>
-              <h3>Admin</h3><p>Akses ruang pengurusan, kandungan dan insights platform.</p>
-              <div class="permission-list"><span><i data-lucide="check"></i> Lihat keseluruhan platform</span><span><i data-lucide="check"></i> Urus kandungan</span><span><i data-lucide="check"></i> Lihat data pelajar apabila backend aktif</span></div>
-            </article>
-            <article class="permission-card">
-              <div class="permission-icon"><i data-lucide="graduation-cap"></i></div>
-              <h3>Student</h3><p>Akses pembelajaran, latihan, challenge dan progress sendiri.</p>
-              <div class="permission-list"><span><i data-lucide="check"></i> Belajar ikut subjek & chapter</span><span><i data-lucide="check"></i> Jawab latihan & challenge</span><span><i data-lucide="check"></i> Lihat progress sendiri</span></div>
-            </article>
-          </div>
-          <article class="admin-panel" style="margin-top:14px">
-            <div class="admin-empty">
-              <div class="admin-empty-icon"><i data-lucide="users-round"></i></div>
-              <h3>Student database belum disambungkan</h3>
-              <p>Buat masa ini progress disimpan pada device. UI admin sudah bersedia untuk senarai pelajar, carian dan analitik apabila authentication + database dipasang.</p>
-              <div class="admin-notice"><span><i data-lucide="info"></i></span><div><strong>Tiada data palsu dipaparkan</strong><small>Dashboard ini sengaja tidak mereka-reka jumlah pelajar atau aktiviti yang belum wujud pada backend.</small></div></div>
-            </div>
-          </article>
+          <div class="admin-hero"><div><span class="section-kicker">ADMIN · PELAJAR</span><h2>Semua pengguna.</h2><p>Cari pelajar, buka profil dan lihat progress pembelajaran secara terperinci.</p></div><span class="admin-data-status" id="adminDataStatus">Live data</span></div>
+          <div class="admin-toolbar"><div class="search-field"><i data-lucide="search"></i><input id="studentSearch" type="search" placeholder="Cari nama, email atau telefon..." /></div><button class="btn ghost" id="refreshAdmin" type="button"><i data-lucide="refresh-cw"></i> Refresh</button></div>
+          <div class="student-list" id="adminStudentList"><div class="detail-loading"><span class="spinner dark"></span> Memuatkan pelajar...</div></div>
         </section>
 
         <section id="admin-content" class="view">
-          <div class="admin-hero">
-            <div><span class="section-kicker">ADMIN · KANDUNGAN</span><h2>Content workspace</h2><p>Lihat apa yang live sekarang dan kenal pasti subjek yang perlu dilengkapkan seterusnya.</p></div>
-            <button class="btn ghost" type="button" data-view="subjects"><i data-lucide="external-link"></i> Preview student view</button>
-          </div>
+          <div class="admin-hero"><div><span class="section-kicker">ADMIN · KANDUNGAN</span><h2>Coverage Semester 1</h2><p>Learning engine semasa merangkumi 12 chapter aktif daripada empat subjek.</p></div></div>
           <div class="admin-grid">
-            <article class="admin-panel">
-              <div class="admin-panel-head"><div><span class="section-kicker">LIVE CATALOG</span><h3>Semester 1</h3></div><span class="mini-chip good">4 subjek aktif</span></div>
-              <div class="admin-list">
-                <div class="admin-row"><span class="admin-row-icon"><i data-lucide="sigma"></i></span><div><strong>Mathematics</strong><small>4 chapter · Real Number System hingga Absolute Values</small></div><span class="row-action">Live</span></div>
-                <div class="admin-row"><span class="admin-row-icon"><i data-lucide="flask-conical"></i></span><div><strong>Chemistry I</strong><small>4 chapter · Matter hingga Atomic Structure</small></div><span class="row-action">Live</span></div>
-                <div class="admin-row"><span class="admin-row-icon"><i data-lucide="microscope"></i></span><div><strong>Biology I</strong><small>2 chapter · Molecules of Life & Cell Structure</small></div><span class="row-action">Live</span></div>
-                <div class="admin-row"><span class="admin-row-icon"><i data-lucide="sprout"></i></span><div><strong>Agriculture Industry</strong><small>2 chapter · Industry & Crop Production</small></div><span class="row-action">Live</span></div>
-                <div class="admin-row"><span class="admin-row-icon"><i data-lucide="atom"></i></span><div><strong>Physics</strong><small>Placeholder tersedia, kandungan belum dimasukkan</small></div><span class="row-action">Soon</span></div>
-              </div>
-            </article>
-            <aside class="admin-panel">
-              <div class="admin-panel-head"><div><span class="section-kicker">NEXT MOVE</span><h3>Cadangan operasi</h3></div></div>
-              <div class="admin-notice"><span><i data-lucide="target"></i></span><div><strong>Lengkapkan Physics dahulu</strong><small>Ia satu-satunya subjek Semester 1 yang masih placeholder dalam dataset semasa.</small></div></div>
-              <div class="admin-notice" style="margin-top:10px"><span><i data-lucide="database-zap"></i></span><div><strong>Kemudian sambung D1/Auth</strong><small>Supaya progress boleh ikut akaun pelajar dan admin mendapat analytics sebenar.</small></div></div>
-            </aside>
+            <article class="admin-panel"><div class="admin-panel-head"><div><span class="section-kicker">LIVE CATALOG</span><h3>Subjek aktif</h3></div></div><div class="admin-list"><div class="admin-row"><span class="admin-row-icon"><i data-lucide="sigma"></i></span><div><strong>Mathematics</strong><small>4 chapter · 18 topics</small></div><span class="row-action">Live</span></div><div class="admin-row"><span class="admin-row-icon"><i data-lucide="flask-conical"></i></span><div><strong>Chemistry I</strong><small>4 chapter · 16 topics</small></div><span class="row-action">Live</span></div><div class="admin-row"><span class="admin-row-icon"><i data-lucide="microscope"></i></span><div><strong>Biology I</strong><small>2 chapter · 10 topics</small></div><span class="row-action">Live</span></div><div class="admin-row"><span class="admin-row-icon"><i data-lucide="sprout"></i></span><div><strong>Agriculture Industry</strong><small>2 chapter · 8 topics</small></div><span class="row-action">Live</span></div><div class="admin-row"><span class="admin-row-icon"><i data-lucide="atom"></i></span><div><strong>Physics</strong><small>Kandungan belum dimasukkan</small></div><span class="row-action">Soon</span></div></div></article>
+            <aside class="admin-panel"><div class="admin-panel-head"><div><span class="section-kicker">SYSTEM</span><h3>Production architecture</h3></div></div><div class="admin-notice"><span><i data-lucide="database"></i></span><div><strong>D1 database</strong><small>Akaun, sessions dan learning state disimpan server-side.</small></div></div><div class="admin-notice"><span><i data-lucide="shield-check"></i></span><div><strong>Role-based access</strong><small>Admin endpoints dilindungi oleh backend session.</small></div></div><div class="admin-notice"><span><i data-lucide="cloud"></i></span><div><strong>Auto progress sync</strong><small>Progress student dihantar secara berkala ke server.</small></div></div></aside>
           </div>
         </section>
 
         <section id="admin-insights" class="view">
-          <div class="admin-hero">
-            <div><span class="section-kicker">ADMIN · ANALITIK</span><h2>Insights & readiness</h2><p>Ruang ini membezakan data yang memang wujud daripada data yang memerlukan backend supaya keputusan admin kekal tepat.</p></div>
-          </div>
-          <div class="admin-metric-grid">
-            <article class="admin-metric"><div class="admin-metric-top"><div class="admin-metric-icon"><i data-lucide="database"></i></div><span class="mini-chip">Local</span></div><strong>On-device</strong><small>Student progress</small><div class="metric-note">Tiada cross-device sync</div></article>
-            <article class="admin-metric"><div class="admin-metric-top"><div class="admin-metric-icon"><i data-lucide="list-checks"></i></div><span class="mini-chip good">Ready</span></div><strong>Quiz</strong><small>Attempts & accuracy</small><div class="metric-note good">Enjin sudah aktif</div></article>
-            <article class="admin-metric"><div class="admin-metric-top"><div class="admin-metric-icon"><i data-lucide="user-round-check"></i></div><span class="mini-chip">Pending</span></div><strong>Auth</strong><small>Student identity</small><div class="metric-note">Perlu backend session</div></article>
-            <article class="admin-metric"><div class="admin-metric-top"><div class="admin-metric-icon"><i data-lucide="chart-spline"></i></div><span class="mini-chip">Pending</span></div><strong>Cohort</strong><small>Admin analytics</small><div class="metric-note">Perlu central database</div></article>
-          </div>
-          <article class="admin-panel">
-            <div class="admin-panel-head"><div><span class="section-kicker">DATA ROADMAP</span><h3>Apa yang admin boleh dapat selepas database disambung</h3></div></div>
-            <div class="table-shell">
-              <table class="admin-table">
-                <thead><tr><th>Insight</th><th>Student</th><th>Admin</th><th>Status sekarang</th></tr></thead>
-                <tbody>
-                  <tr><td>Mastery ikut chapter</td><td>Data sendiri</td><td>Agregat cohort</td><td><span class="status-pill">Student ready</span></td></tr>
-                  <tr><td>Accuracy quiz</td><td>Data sendiri</td><td>Weak-topic ranking</td><td><span class="status-pill">Student ready</span></td></tr>
-                  <tr><td>Cross-device progress</td><td>Sync akaun</td><td>Live monitoring</td><td><span class="status-pill muted">Backend needed</span></td></tr>
-                  <tr><td>Student directory</td><td>Profile sendiri</td><td>Search & filter</td><td><span class="status-pill muted">Backend needed</span></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </article>
+          <div class="admin-hero"><div><span class="section-kicker">ADMIN · INSIGHTS</span><h2>Learning signals.</h2><p>Kenal pasti siapa sedang berkembang dan siapa perlukan dorongan lebih awal.</p></div></div>
+          <div class="admin-grid"><article class="admin-panel"><div class="admin-panel-head"><div><span class="section-kicker">MASTERY</span><h3>Pelajar teratas</h3></div></div><div class="rank-list" id="topStudents"><p class="muted">Memuatkan...</p></div></article><article class="admin-panel"><div class="admin-panel-head"><div><span class="section-kicker">FOLLOW UP</span><h3>Perlu perhatian</h3></div></div><div class="rank-list" id="attentionStudents"><p class="muted">Memuatkan...</p></div></article></div>
         </section>
-
-        <footer class="site-footer">
-          <span><strong>SkorAsasi1</strong> · Asasi Putra Semester 1 Learning Centre</span>
-          <span>Built for revision, practice & mastery tracking.</span>
-        </footer>
       </main>
     </div>
   </div>
 
-  <nav class="mobile-nav" id="mobileNav" aria-label="Navigasi student mudah alih">
-    <button class="active" type="button" data-view="home" data-shell-nav><i data-lucide="house"></i><span>Utama</span></button>
-    <button type="button" data-view="subjects" data-shell-nav><i data-lucide="library-big"></i><span>Subjek</span></button>
-    <button type="button" data-view="practice" data-shell-nav><i data-lucide="notebook-tabs"></i><span>Latihan</span></button>
-    <button type="button" data-view="progress" data-shell-nav><i data-lucide="chart-no-axes-column-increasing"></i><span>Progress</span></button>
+  <nav class="mobile-nav hidden" id="studentMobileNav" aria-label="Student mobile navigation">
+    <button class="active" data-view="home"><i data-lucide="house"></i><span>Utama</span></button><button data-view="subjects"><i data-lucide="book-open"></i><span>Subjek</span></button><button data-view="practice"><i data-lucide="notebook-tabs"></i><span>Latihan</span></button><button data-view="progress"><i data-lucide="chart-no-axes-column-increasing"></i><span>Progress</span></button>
+  </nav>
+  <nav class="mobile-nav hidden" id="adminMobileNav" aria-label="Admin mobile navigation">
+    <button class="active" data-view="admin-dashboard"><i data-lucide="house"></i><span>Utama</span></button><button data-view="admin-students"><i data-lucide="users"></i><span>Pelajar</span></button><button data-view="admin-insights"><i data-lucide="chart-spline"></i><span>Insights</span></button><button id="mobileLogoutBtn"><i data-lucide="log-out"></i><span>Keluar</span></button>
   </nav>
 
-  <div class="modal-backdrop hidden" id="roleModal" role="dialog" aria-modal="true" aria-labelledby="roleTitle">
-    <div class="modal-card">
-      <div class="modal-head">
-        <div><span class="section-kicker">PAPARAN SISTEM</span><h3 id="roleTitle">Pilih role</h3></div>
-        <button class="icon-btn modal-close" type="button" aria-label="Tutup"><i data-lucide="x"></i></button>
-      </div>
-      <p>Hanya dua role digunakan dalam SkorAsasi1: Admin dan Student.</p>
-      <div class="role-options">
-        <button type="button" data-role="student"><span class="role-option-icon"><i data-lucide="graduation-cap"></i></span><div><strong>Student</strong><small>Learning, practice, challenge & progress</small></div><i data-lucide="chevron-right"></i></button>
-        <button type="button" data-role="admin"><span class="role-option-icon"><i data-lucide="shield-check"></i></span><div><strong>Admin</strong><small>Content, student readiness & insights</small></div><i data-lucide="chevron-right"></i></button>
-      </div>
-    </div>
+  <div class="detail-modal hidden" id="studentDetailModal" role="dialog" aria-modal="true" aria-labelledby="studentDetailTitle">
+    <div class="detail-card"><div class="detail-head"><h3 id="studentDetailTitle">Detail pelajar</h3><button class="icon-btn" id="closeStudentDetail" type="button" aria-label="Tutup"><i data-lucide="x"></i></button></div><div class="detail-body" id="studentDetailBody"></div></div>
   </div>
-
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="app-v5.js?v=v5.0"></script>
-  <script src="math-quiz-addon.js?v=v5.1"></script>
-  <script src="progress-tools.js?v=v5.2"></script>
-  <script src="exam-countdown.js?v=v5.7"></script>
-  <script src="shell-v6.js?v=v6.0"></script>
 </body>
 </html>
