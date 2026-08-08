@@ -4,26 +4,42 @@ Asasi Putra Semester 1 Learning Centre by Perintis Siswa.
 
 ## Current App
 
-- Subject: Mathematics
-- Chapter 1: Real Number System
-- Features: revision notes, flashcards, topic quiz, mixed mastery challenge, formula sheet, mastery dashboard, daily missions, local progress tracking.
+SkorAsasi1 is a responsive Semester 1 learning workspace with two product roles only:
+
+- `student` — dashboard, subjects, learning notes, topic practice, mixed challenge and personal progress.
+- `admin` — platform overview, student-readiness view, content workspace and analytics-readiness view.
+
+There is no partner/content-partner role in SkorAsasi1.
+
+## UI v6
+
+The current interface uses a Mahirly-inspired application shell with:
+
+- responsive desktop sidebar and mobile navigation,
+- consistent Lucide line icons,
+- clearer learning hierarchy and top-level progress context,
+- dedicated Admin and Student views,
+- preserved existing quiz, mastery, progress and exam-countdown engine.
+
+## Semester 1 Content
+
+- Mathematics
+- Chemistry I
+- Biology I
+- Agriculture Industry
+- Physics (placeholder / coming soon)
+
+Content is organised through `data/semester-1/` and the current learning engine.
 
 ## Deployment
 
-For Netlify:
+Cloudflare Pages / static hosting:
 
 - Branch: `main`
 - Base directory: leave empty
 - Build command: leave empty
 - Publish directory: `.`
 
-## Future Structure
+## Data Note
 
-Add new chapters and subjects through `data/semester-1/`.
-
-Suggested files:
-
-- `data/semester-1/mathematics.json`
-- `data/semester-1/chemistry.json`
-- `data/semester-1/biology.json`
-- `data/semester-1/physics.json`
+Student progress is currently stored locally on the browser/device. Central student accounts, cross-device sync and cohort analytics require a backend identity + database phase.
