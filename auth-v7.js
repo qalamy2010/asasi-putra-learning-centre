@@ -53,7 +53,10 @@
     }
   }
   function authMessage(message, type) {
-    var box = $('authMessage');
+    var box = document.querySelector('.auth-form:not(.hidden) .auth-message') || $('authMessage');
+    document.querySelectorAll('.auth-message').forEach(function (item) {
+      if (item !== box) { item.textContent = ''; item.className = 'auth-message'; }
+    });
     if (!box) return;
     box.textContent = message || '';
     box.className = 'auth-message' + (message ? ' show ' + (type || 'error') : '');
@@ -103,7 +106,7 @@
     document.querySelectorAll('[data-shell-nav][data-view]').forEach(function (button) {
       button.classList.toggle('active', button.getAttribute('data-view') === view);
     });
-    document.querySelectorAll('#mobileNav [data-view]').forEach(function (button) {
+    document.querySelectorAll('.mobile-nav [data-view]').forEach(function (button) {
       button.classList.toggle('active', button.getAttribute('data-view') === view);
     });
     updateHeading(view);
@@ -185,6 +188,8 @@
     if ($('adminNav')) $('adminNav').classList.toggle('hidden', !isAdmin);
     if ($('studentMobileNav')) $('studentMobileNav').classList.toggle('hidden', isAdmin);
     if ($('adminMobileNav')) $('adminMobileNav').classList.toggle('hidden', !isAdmin);
+    var brand = document.querySelector('.brand-shell');
+    if (brand) brand.setAttribute('data-view', isAdmin ? 'admin-dashboard' : 'home');
 
     if (isAdmin) {
       stopSync();
@@ -237,12 +242,14 @@
     var needsAttention = adminStudents.filter(function (student) {
       return (student.summary.mastery || 0) < 35 || !student.updatedAt;
     }).slice(0, 5);
-    if ($('topStudents')) $('topStudents').innerHTML = top.length ? top.map(function (student, index) {
+    var topHtml = top.length ? top.map(function (student, index) {
       return '<button class="rank-row" data-student-id="' + esc(student.id) + '"><span>' + (index + 1) + '</span><div><strong>' + esc(student.fullName) + '</strong><small>' + esc(student.email) + '</small></div><b>' + (student.summary.mastery || 0) + '%</b></button>';
     }).join('') : '<p class="muted">Belum ada data.</p>';
-    if ($('attentionStudents')) $('attentionStudents').innerHTML = needsAttention.length ? needsAttention.map(function (student) {
+    var attentionHtml = needsAttention.length ? needsAttention.map(function (student) {
       return '<button class="rank-row" data-student-id="' + esc(student.id) + '"><span><i data-lucide="triangle-alert"></i></span><div><strong>' + esc(student.fullName) + '</strong><small>' + (student.updatedAt ? 'Mastery masih rendah' : 'Belum mula belajar') + '</small></div><b>' + (student.summary.mastery || 0) + '%</b></button>';
     }).join('') : '<p class="muted">Tiada pelajar memerlukan perhatian sekarang.</p>';
+    document.querySelectorAll('#topStudents').forEach(function (target) { target.innerHTML = topHtml; });
+    document.querySelectorAll('#attentionStudents').forEach(function (target) { target.innerHTML = attentionHtml; });
     iconRefresh();
   }
   async function loadAdminData() {
