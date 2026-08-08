@@ -1,5 +1,5 @@
 # Cloudflare Pages headers
-# Keep app shell fresh, while allowing static assets to cache safely.
+# Keep app shell and authentication fresh, while allowing stable assets to cache.
 
 /*
   X-Content-Type-Options: nosniff
@@ -7,6 +7,12 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
 /index.html
+  Cache-Control: no-cache
+
+/auth-v7.js
+  Cache-Control: no-cache
+
+/auth-v7.css
   Cache-Control: no-cache
 
 /*.css
